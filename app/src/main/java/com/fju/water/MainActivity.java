@@ -3,12 +3,13 @@ package com.fju.water;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.util.TimeUtils;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        month = findViewById(R.id.edit_month);
-        next = findViewById(R.id.edit_next);
+        month = findViewById(R.id.month);
+        next = findViewById(R.id.next);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -38,77 +39,61 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void Btn(View view){
+
         Double total;
         float mon = Integer.parseInt(String.valueOf(month.getText().toString()));
+        float nex = Integer.parseInt(String.valueOf(next.getText().toString()));
+        if (TextUtils.isEmpty(month.getText().toString())){
 
 
+            if(mon >= 1 && mon<=10 ){
+                total = mon *7.35;
 
-        if(mon >= 1 && mon<=10 ){
-            total = mon *7.35;
+            }else if (mon>=11 && mon<=30){
+                total = (mon * 9.45)-21;
+
+            }else if (mon>=31 && mon>=50){
+                total = (mon*11.55)-84;
+
+            }else {
+                total = (mon*12.075)-110.25;
 
 
+            }
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle("每月抄表費用")
                     .setMessage("費用" + total )
                     .setPositiveButton("OK",null)
                     .show();
-        }else if (mon>=11 && mon<=30){
-            total = (mon * 9.45)-21;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用" + total)
-                    .setPositiveButton("OK",null)
-                    .show();
-        }else if (mon>=31 && mon>=50){
-            total = (mon*11.55)-84;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用" + total)
-                    .setPositiveButton("OK",null)
-                    .show();
         }else {
-            total = (mon*12.075)-110.25;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用" + total)
-                    .setPositiveButton("OK",null)
-                    .show();
+            if (!TextUtils.isEmpty(next.getText().toString())){
+
+
+                if (nex >=1  &&nex<=20){
+                    total = nex*7.35;
+
+                }else if (nex>=21&& nex<=60){
+                    total= (nex*9.45)-42;
+
+                }else if (nex>=61&&nex<=100){
+                    total =(nex*11.55)-168;
+
+                }else {
+                    total=(nex*12.075)-220.5;
+
+                }
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("隔月抄表費用")
+                        .setMessage("費用" + total)
+                        .setPositiveButton("OK",null)
+                        .show();
+            }
 
         }
-
-        Double totaln;
-        float nex = Integer.parseInt(String.valueOf(next.getText().toString()));
-        if (nex >=1  &&nex<=20){
-            totaln = nex*7.35;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用" + totaln)
-                    .setPositiveButton("OK",null)
-                    .show();
-        }else if (nex>=21&& nex<=60){
-            totaln= (nex*9.45)-42;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用" + totaln)
-                    .setPositiveButton("OK",null)
-                    .show();
-        }else if (nex>=61&&nex<=100){
-            totaln =(nex*11.55)-168;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用" + totaln)
-                    .setPositiveButton("OK",null)
-                    .show();
-        }else {
-            totaln=(nex*12.075)-220.5;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用" + totaln)
-                    .setPositiveButton("OK",null)
-                    .show();
         }
 
-    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

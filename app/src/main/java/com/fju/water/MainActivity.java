@@ -1,5 +1,6 @@
 package com.fju.water;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,14 +39,80 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
             }
         });
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                String MonthS = month.getText().toString();
+//                String NextS = next.getText().toString();
+//
+//                if (!TextUtils.isEmpty(MonthS)){
+//
+//                    float mon = Float.parseFloat(MonthS);
+//                    Double total;
+//
+//                    if(mon >= 1 && mon<=10 ){
+//                        total = mon *7.35;
+//
+//                    }else if (mon>=11 && mon<=30){
+//                        total = (mon * 9.45)-21;
+//
+//                    }else if (mon>=31 && mon>=50){
+//                        total = (mon*11.55)-84;
+//
+//                    }else {
+//                        total = (mon*12.075)-110.25;
+//
+//
+//                    }
+//                    Intent intent = new Intent(MainActivity.this,ResultActivity.class);
+//                    startActivity(intent);
+////            new AlertDialog.Builder(MainActivity.this)
+////                    .setTitle("每月抄表費用")
+////                    .setMessage("費用" + total )
+////                    .setPositiveButton("OK",null)
+////                    .show();
+//                }else {
+//                    if (!TextUtils.isEmpty(NextS)){
+//                        Double total;
+//                        float nex = Float.parseFloat(NextS);
+//
+//                        if (nex >=1  &&nex<=20){
+//                            total = nex*7.35;
+//
+//                        }else if (nex>=21&& nex<=60){
+//                            total= (nex*9.45)-42;
+//
+//                        }else if (nex>=61&&nex<=100){
+//                            total =(nex*11.55)-168;
+//
+//                        }else {
+//                            total=(nex*12.075)-220.5;
+//
+//                        }
+//                        Intent intent = new Intent(MainActivity.this,ResultActivity.class);
+//                        startActivity(intent);
+////                        new AlertDialog.Builder(MainActivity.this)
+////                                .setTitle("隔月抄表費用")
+////                                .setMessage("費用" + total)
+////                                .setPositiveButton("OK",null)
+////                                .show();
+//                    }
+
+                //}
+                Btn();
+            }
+        });
     }
-    public void Btn(View view){
+    public void Btn(){
 
-        Double total;
-        float mon = Integer.parseInt(String.valueOf(month.getText().toString()));
-        float nex = Integer.parseInt(String.valueOf(next.getText().toString()));
-        if (TextUtils.isEmpty(month.getText().toString())){
+        String MonthS = month.getText().toString();
+        String NextS = next.getText().toString();
 
+        if (!TextUtils.isEmpty(MonthS)){
+
+            float mon = Float.parseFloat(MonthS);
+            Double total;
 
             if(mon >= 1 && mon<=10 ){
                 total = mon *7.35;
@@ -60,14 +128,17 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用" + total )
-                    .setPositiveButton("OK",null)
-                    .show();
+            Intent intent = new Intent(this,ResultActivity.class);
+            startActivity(intent);
+//            new AlertDialog.Builder(MainActivity.this)
+//                    .setTitle("每月抄表費用")
+//                    .setMessage("費用" + total )
+//                    .setPositiveButton("OK",null)
+//                    .show();
         }else {
-            if (!TextUtils.isEmpty(next.getText().toString())){
-
+            if (!TextUtils.isEmpty(NextS)){
+                Double total;
+                float nex = Float.parseFloat(NextS);
 
                 if (nex >=1  &&nex<=20){
                     total = nex*7.35;

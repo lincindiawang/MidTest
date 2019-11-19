@@ -112,23 +112,24 @@ public class MainActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(MonthS)){
 
             float mon = Float.parseFloat(MonthS);
-            Double total;
+            Float fee;
 
             if(mon >= 1 && mon<=10 ){
-                total = mon *7.35;
+                fee = mon *7.35f;
 
             }else if (mon>=11 && mon<=30){
-                total = (mon * 9.45)-21;
+                fee = (mon * 9.45f)-21f;
 
             }else if (mon>=31 && mon>=50){
-                total = (mon*11.55)-84;
+                fee = (mon*11.55f)-84f;
 
             }else {
-                total = (mon*12.075)-110.25;
+                fee = (mon*12.075f)-110.25f;
 
 
             }
             Intent intent = new Intent(this,ResultActivity.class);
+            intent.putExtra("FEE", fee);
             startActivity(intent);
 //            new AlertDialog.Builder(MainActivity.this)
 //                    .setTitle("每月抄表費用")
@@ -137,25 +138,25 @@ public class MainActivity extends AppCompatActivity {
 //                    .show();
         }else {
             if (!TextUtils.isEmpty(NextS)){
-                Double total;
+                float fee;
                 float nex = Float.parseFloat(NextS);
 
                 if (nex >=1  &&nex<=20){
-                    total = nex*7.35;
+                    fee= nex*7.35f;
 
                 }else if (nex>=21&& nex<=60){
-                    total= (nex*9.45)-42;
+                    fee= (nex*9.45f)-42f;
 
                 }else if (nex>=61&&nex<=100){
-                    total =(nex*11.55)-168;
+                    fee =(nex*11.55f)-168f;
 
                 }else {
-                    total=(nex*12.075)-220.5;
+                    fee=(nex*12.075f)-220.5f;
 
                 }
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("隔月抄表費用")
-                        .setMessage("費用" + total)
+                        .setMessage("費用" + fee)
                         .setPositiveButton("OK",null)
                         .show();
             }

@@ -14,10 +14,11 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 //        Intent intent = getIntent();
+//        float fee = intent.getFloatExtra("FEE",0);
         float fee = getIntent().getFloatExtra("FEE",0);
         Log.d("ResultActivity : ",fee+"");
         TextView feeText = findViewById(R.id.fee);
         int n = (int)(fee + 0.5f);
-        feeText.setText(n +"");
+        feeText.setText(n + "");
     }
 }

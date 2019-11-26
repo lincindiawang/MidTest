@@ -15,12 +15,18 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText month;
-    private EditText next;
+//    private EditText next;
+
+
+    boolean isNext = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         month = findViewById(R.id.month);
-        next = findViewById(R.id.next);
+//        next = findViewById(R.id.next);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -103,16 +109,27 @@ public class MainActivity extends AppCompatActivity {
                 Btn();
             }
         });
+        Switch sw = findViewById(R.id.sw);
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isNext = isChecked;
+                TextView text = findViewById(R.id.type);
+                text.setText(isNext ? getString(R.string.every_other_month) : getString(R.string.monthly));
+
+            }
+        });
     }
     public void Btn(){
 
         String MonthS = month.getText().toString();
-        String NextS = next.getText().toString();
+//        String NextS = next.getText().toString();
 
         if (!TextUtils.isEmpty(MonthS)){
 
+
             float mon = Float.parseFloat(MonthS);
-            Float fee;
+            float fee =0;
 
             if(mon >= 1 && mon<=10 ){
                 fee = mon *7.35f;
@@ -136,36 +153,37 @@ public class MainActivity extends AppCompatActivity {
 //                    .setMessage("費用" + fee )
 //                    .setPositiveButton(getString(R.string.OK),null)
 //                    .show();
-        }else {
-            if (!TextUtils.isEmpty(NextS)){
-//                float fee;
-                float nex = Float.parseFloat(NextS);
-                Float fee;
-
-                if (nex >=1  &&nex<=20){
-                    fee= nex*7.35f;
-
-                }else if (nex>=21&& nex<=60){
-                    fee= (nex*9.45f)-42f;
-
-                }else if (nex>=61&&nex<=100){
-                    fee =(nex*11.55f)-168f;
-
-                }else {
-                    fee=(nex*12.075f)-220.5f;
-
-                }
-                Intent intent = new Intent(this,ResultActivity.class);
-                intent.putExtra(getString(R.string.extra_fee), fee);
-                startActivity(intent);
+        }
+//        else {
+//            if (!TextUtils.isEmpty(NextS)){
+//                float fee =0;
+//                float nex = Float.parseFloat(NextS);
+////                Float fee;
+//
+//                if (nex >=1  &&nex<=20){
+//                    fee= nex*7.35f;
+//
+//                }else if (nex>=21&& nex<=60){
+//                    fee= (nex*9.45f)-42f;
+//
+//                }else if (nex>=61&&nex<=100){
+//                    fee =(nex*11.55f)-168f;
+//
+//                }else {
+//                    fee=(nex*12.075f)-220.5f;
+//
+//                }
+//                Intent intent = new Intent(this,ResultActivity.class);
+//                intent.putExtra(getString(R.string.extra_fee), fee);
+//                startActivity(intent);
 //                new AlertDialog.Builder(MainActivity.this)
 //                        .setTitle("隔月抄表費用")
 //                        .setMessage("費用" + fee)
 //                        .setPositiveButton("OK",null)
 //                        .show();
-            }
-
-        }
+//            }
+//
+//        }
         }
 
 

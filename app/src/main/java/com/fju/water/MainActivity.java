@@ -133,13 +133,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 //            new AlertDialog.Builder(MainActivity.this)
 //                    .setTitle("每月抄表費用")
-//                    .setMessage("費用" + total )
-//                    .setPositiveButton("OK",null)
+//                    .setMessage("費用" + fee )
+//                    .setPositiveButton(getString(R.string.OK),null)
 //                    .show();
         }else {
             if (!TextUtils.isEmpty(NextS)){
-                float fee;
+//                float fee;
                 float nex = Float.parseFloat(NextS);
+                Float fee;
 
                 if (nex >=1  &&nex<=20){
                     fee= nex*7.35f;
@@ -154,11 +155,14 @@ public class MainActivity extends AppCompatActivity {
                     fee=(nex*12.075f)-220.5f;
 
                 }
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("隔月抄表費用")
-                        .setMessage("費用" + fee)
-                        .setPositiveButton("OK",null)
-                        .show();
+                Intent intent = new Intent(this,ResultActivity.class);
+                intent.putExtra("FEE", fee);
+                startActivity(intent);
+//                new AlertDialog.Builder(MainActivity.this)
+//                        .setTitle("隔月抄表費用")
+//                        .setMessage("費用" + fee)
+//                        .setPositiveButton("OK",null)
+//                        .show();
             }
 
         }

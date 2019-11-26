@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
             Intent intent = new Intent(this,ResultActivity.class);
-            intent.putExtra("FEE", fee);
+            intent.putExtra(getString(R.string.extra_fee), fee);
             startActivity(intent);
 //            new AlertDialog.Builder(MainActivity.this)
 //                    .setTitle("每月抄表費用")
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 Intent intent = new Intent(this,ResultActivity.class);
-                intent.putExtra("FEE", fee);
+                intent.putExtra(getString(R.string.extra_fee), fee);
                 startActivity(intent);
 //                new AlertDialog.Builder(MainActivity.this)
 //                        .setTitle("隔月抄表費用")
